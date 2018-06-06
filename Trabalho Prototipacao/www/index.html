@@ -53,9 +53,6 @@
                 <li>
                     <a href="horario.html">Seu horário</a>
                 </li>
-                <li>
-                    <a href="about.html">About app</a>
-                </li>
             </ul>
         </div>
     </div>
@@ -85,14 +82,18 @@
                     <!-- Scrollable page content -->
                     <div class="page-content">
                         <div class="content-block">
-                            <select class="select-app">
+                            <select id="select-faculdade" class="select-app">
                                 <option value="">Faculdade</option>
                                 <option value="UFPR">UFPR</option>
-                                <option value="PUC">PUC</option>
-                            </select><br>
-                            <input type="text" placeholder="Digite o seu GRR">
+                                <option value="PUC">PUC-PR</option>
+                            </select>
+                            <br>
+                            <br>
+                            <input id="input-matricula" type="text" placeholder="Digite sua matrícula" style="height: 25px;">
+                            <br>
+                            <br>
                             <form action="horario.html">
-                                <input type="submit" value="Gerar" />
+                                <input id="botao-gerar" type="submit" disabled value="Gerar" />
                             </form>
 
 
@@ -105,7 +106,6 @@
                 <div class="toolbar-inner">
                     <!-- Toolbar links -->
                     <a href="horario.html" class="link">Horario</a>
-                    <a href="about.html" class="link">Sobre</a>
                 </div>
             </div>
         </div>
@@ -115,6 +115,34 @@
     <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
     <script type="text/javascript" src="js/my-app.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#input-matricula').on('change',function () {
+                document.getElementById('botao-gerar').disabled=false;
+
+                if($('#input-matricula').val() === ''){
+                    document.getElementById('botao-gerar').disabled=true;
+                }
+
+                if($('#select-faculdade').val() === 'Faculdade'){
+                    document.getElementById('botao-gerar').disabled=true;
+                }
+            });
+
+            $('#select-faculdade').on('change',function () {
+                document.getElementById('botao-gerar').disabled=false;
+
+                if($('#select-faculdade').val() === 'Faculdade'){
+                    document.getElementById('botao-gerar').disabled=true;
+                }
+
+                if($('#input-matricula').val() === ''){
+                    document.getElementById('botao-gerar').disabled=true;
+                }
+            });
+        });
+    </script>
 
 </body>
 
