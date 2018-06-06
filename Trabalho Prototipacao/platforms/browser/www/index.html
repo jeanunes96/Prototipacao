@@ -10,7 +10,8 @@
             * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
                 * Enable inline JS: add 'unsafe-inline' to default-src
         -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <meta http-equiv="Content-Security-Policy" content="style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'" />
+
 
     <!-- Required meta tags-->
     <meta charset="utf-8">
@@ -21,7 +22,7 @@
     <meta name="msapplication-tap-highlight" content="no">
 
     <!-- Your app title -->
-    <title class="col-md-4">My App</title>
+    <title class="">UniCalendar</title>
 
     <!-- This template defaults to the iOS CSS theme. To support both iOS and material design themes, see the Framework7 Tutorial at the link below:
         http://www.idangero.us/framework7/tutorials/maintain-both-ios-and-material-themes-in-single-app.html
@@ -35,6 +36,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
     
     <link rel="stylesheet" href="css/styles.css">
+     <link rel="stylesheet" href="css/bootstrap.css">
 </head>
 
 <body>
@@ -46,7 +48,15 @@
     <!-- Left panel with reveal effect-->
     <div class="panel panel-left panel-reveal">
         <div class="content-block">
-            <p>Left panel content goes here</p>
+            <p> Menu</p>
+            <ul>
+                <li>
+                    <a href="horario.html">Seu horário</a>
+                </li>
+                <li>
+                    <a href="about.html">About app</a>
+                </li>
+            </ul>
         </div>
     </div>
 
@@ -58,7 +68,7 @@
             <div class="navbar">
                 <div class="navbar-inner">
                     <!-- We need cool sliding animation on title element, so we have additional "sliding" class -->
-                    <div class="center sliding">Awesome App</div>
+                    <div class="center sliding">UniCalendar</div>
                     <div class="right">
                         <!--
                           Right link contains only icon - additional "icon-only" class
@@ -75,9 +85,74 @@
                     <!-- Scrollable page content -->
                     <div class="page-content">
                         <div class="content-block">
-                            <p>Page content goes here</p>
+                            <select class="select-app">
+                                <option value="">Faculdade</option>
+                                <option value="UFPR">UFPR</option>
+                                <option value="PUC">PUC</option>
+                            </select><br>
+                            <select class="select-app">
+                                <option value="">Curso</option>
+                                <option value="TADS">TADS</option>
+                                <option value="DIREITO">DIREITO</option>
+                            </select><br>
+                            <select class="select-app">
+                                <option value="">Turno</option>
+                                <option value="NOITE">NOITE</option>
+                                <option value="NOITE">MANHÃ</option>
+                            </select>
                             <!-- Link to another page -->
-                            <a href="about.html">About app</a>
+                            <input id="buscar" type="button" name="Buscar" value="Buscar">
+                            <br>
+                            <br>
+
+                            <div class="" id="div-tabela" style="display: none;">
+
+                                Seu horário:
+
+                                <table id="horario" class="tabela-horario table">
+                                    <thead>
+                                        <tr class="thead-dark">
+                                            <th>Horário</th>
+                                            <th>Segunda-Feira</th>
+                                            <th>Terça-Feira</th>
+                                            <th>Quarta-Feira</th>
+                                            <th>Quinta-Feira</th>
+                                            <th>Sexta-Feira</th>
+                                        </tr>    
+                                    </thead>
+                                    <tr>
+                                        <td>Horario 1</td>
+                                        <td>Aula 1</td>
+                                        <td>Aula 1</td>
+                                        <td>Aula 1</td>
+                                        <td>Aula 1</td>
+                                        <td>Aula 1</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Horario 2</td>
+                                        <td>Aula 2</td>
+                                        <td>Aula 2</td>
+                                        <td>Aula 2</td>
+                                        <td>Aula 2</td>
+                                        <td>Aula 2</td>
+                                    </tr>
+                                    <tr><td>Horario 3</td>
+                                        <td>Aula 3</td>
+                                        <td>Aula 3</td>
+                                        <td>Aula 3</td>
+                                        <td>Aula 3</td>
+                                        <td>Aula 3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Horario 4</td>
+                                        <td>Aula 4</td>
+                                        <td>Aula 4</td>
+                                        <td>Aula 4</td>
+                                        <td>Aula 4</td>
+                                        <td>Aula 4</td>
+                                    </tr>
+                                </table>
+                             </div>   
                         </div>
                     </div>
                 </div>
@@ -86,8 +161,8 @@
             <div class="toolbar">
                 <div class="toolbar-inner">
                     <!-- Toolbar links -->
-                    <a href="#" class="link">Link 1</a>
-                    <a href="#" class="link">Link 2</a>
+                    <a href="horario.html" class="link">Horario</a>
+                    <a href="about.html" class="link">Sobre</a>
                 </div>
             </div>
         </div>
@@ -96,6 +171,17 @@
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="lib/framework7/js/framework7.min.js"></script>
     <script type="text/javascript" src="js/my-app.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 </body>
+
+    <script>
+        $(document).ready(function (){
+            $( "#buscar" ).click(function() {
+                $('#div-tabela').css("display","block");
+            });
+        });    
+    </script>
+
 
 </html>
